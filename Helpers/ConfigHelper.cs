@@ -11,11 +11,11 @@ namespace Ruminoid.Common.Helpers
 {
     public static class ConfigHelper<T>
     {
-        public static string GetConfigFolder(string productName)
+        public static string GetConfigFolder()
         {
             string folder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            @"Ruminoid\Config", productName);
+            @"Ruminoid\Config", GetProductName());
             Directory.CreateDirectory(folder);
             return folder;
         }
@@ -31,14 +31,14 @@ namespace Ruminoid.Common.Helpers
         public static T OpenConfig()
         {
             return JsonConvert.DeserializeObject<T>(File
-                .OpenText(Path.Combine(GetConfigFolder(GetProductName()), "config.json"))
+                .OpenText(Path.Combine(GetConfigFolder(), "config.json"))
                 .ReadToEnd());
         }
 
         public static void SaveConfig(T config)
         {
             File.WriteAllText(
-                Path.Combine(GetConfigFolder(GetProductName()), "config.json"), JsonConvert.SerializeObject(config));
+                Path.Combine(GetConfigFolder(), "config.json"), JsonConvert.SerializeObject(config));
         }
     }
 
