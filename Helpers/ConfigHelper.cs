@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Ruminoid.Common.Helpers
 {
-    public static class ConfigHelper<T>
+    public static class ConfigHelper<T> where T : new()
     {
         public static string GetConfigFolder()
         {
@@ -28,17 +28,20 @@ namespace Ruminoid.Common.Helpers
             return product.ProductName;
         }
 
+        private static string GetConfigFileName() => Path.Combine(GetConfigFolder(), "config.json");
+
         public static T OpenConfig()
         {
+            if (!File.Exists(GetConfigFileName())) return new T();
             return JsonConvert.DeserializeObject<T>(File
-                .OpenText(Path.Combine(GetConfigFolder(), "config.json"))
+                .OpenText(GetConfigFileName())
                 .ReadToEnd());
         }
 
         public static void SaveConfig(T config)
         {
             File.WriteAllText(
-                Path.Combine(GetConfigFolder(), "config.json"), JsonConvert.SerializeObject(config));
+                GetConfigFileName(), JsonConvert.SerializeObject(config));
         }
     }
 

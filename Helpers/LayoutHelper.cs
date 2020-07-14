@@ -10,7 +10,7 @@ using YDock;
 
 namespace Ruminoid.Common.Helpers
 {
-    public static class LayoutHelper<T>
+    public static class LayoutHelper<T> where T : new()
     {
         private static string GetLayoutFolder()
         {
