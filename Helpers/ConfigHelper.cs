@@ -41,7 +41,7 @@ namespace Ruminoid.Common.Helpers
     }
 
     [AttributeUsage(AttributeTargets.Class)]
-    sealed class RuminoidProductAttribute : Attribute
+    public sealed class RuminoidProductAttribute : Attribute
     {
         public RuminoidProductAttribute(string productName)
         {
