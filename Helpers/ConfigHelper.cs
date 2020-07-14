@@ -11,7 +11,7 @@ namespace Ruminoid.Common.Helpers
 {
     public static class ConfigHelper<T>
     {
-        private static string GetConfigFolder(string productName)
+        public static string GetConfigFolder(string productName)
         {
             string folder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -20,23 +20,25 @@ namespace Ruminoid.Common.Helpers
             return folder;
         }
 
-        public static T OpenConfig()
+        public static string GetProductName()
         {
             RuminoidProductAttribute product =
                 (RuminoidProductAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(RuminoidProductAttribute));
             if (product == null) throw new CustomAttributeFormatException("Product name not found.");
+            return product.ProductName;
+        }
+
+        public static T OpenConfig()
+        {
             return JsonConvert.DeserializeObject<T>(File
-                .OpenText(Path.Combine(GetConfigFolder(product.ProductName), "config.json"))
+                .OpenText(Path.Combine(GetConfigFolder(GetProductName()), "config.json"))
                 .ReadToEnd());
         }
 
         public static void SaveConfig(T config)
         {
-            RuminoidProductAttribute product =
-                (RuminoidProductAttribute) Attribute.GetCustomAttribute(typeof(T), typeof(RuminoidProductAttribute));
-            if (product == null) throw new CustomAttributeFormatException("Product name not found.");
             File.WriteAllText(
-                Path.Combine(GetConfigFolder(product.ProductName), "config.json"), JsonConvert.SerializeObject(config));
+                Path.Combine(GetConfigFolder(GetProductName()), "config.json"), JsonConvert.SerializeObject(config));
         }
     }
 
