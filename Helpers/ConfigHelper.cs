@@ -33,9 +33,7 @@ namespace Ruminoid.Common.Helpers
         public static T OpenConfig()
         {
             if (!File.Exists(GetConfigFileName())) return new T();
-            return JsonConvert.DeserializeObject<T>(File
-                .OpenText(GetConfigFileName())
-                .ReadToEnd());
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(GetConfigFileName()));
         }
 
         public static void SaveConfig(T config)
