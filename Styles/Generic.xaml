@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:visualIcon="clr-namespace:VisualIcon;assembly=VisualIcon">
     <!--Text Styles-->
     <Style x:Key="ShellHeaderTextStyle" TargetType="TextBlock">
         <Setter Property="Margin" Value="96,0,0,0"/>
@@ -153,6 +154,28 @@
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LockToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <visualIcon:Icon>
+                    <visualIcon:Icon.Style>
+                        <Style TargetType="visualIcon:Icon">
+                            <Setter Property="Type" Value="Lock"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=ToggleButton}}"
+                                                                 Value="true">
+                                    <Setter Property="Type" Value="UnLock"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </visualIcon:Icon.Style>
+                </visualIcon:Icon>
             </Setter.Value>
         </Setter>
     </Style>
