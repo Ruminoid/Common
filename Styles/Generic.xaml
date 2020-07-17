@@ -186,8 +186,8 @@
            BasedOn="{StaticResource {x:Type ToggleButton}}">
         <Setter Property="Padding" Value="8" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Width" Value="34"/>
-        <Setter Property="Height" Value="34"/>
+        <Setter Property="Width" Value="34" />
+        <Setter Property="Height" Value="34" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -197,8 +197,8 @@
                                 <Setter Property="Type" Value="Lock" />
                                 <Style.Triggers>
                                     <DataTrigger
-                                    Binding="{Binding IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=ToggleButton}}"
-                                    Value="true">
+                                        Binding="{Binding IsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=ToggleButton}}"
+                                        Value="true">
                                         <Setter Property="Type" Value="UnLock" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -206,6 +206,26 @@
                         </visualIcon:Icon.Style>
                     </visualIcon:Icon>
                 </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NoFocusListViewStyle" TargetType="ListView">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Focusable" Value="false" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Grid>
+                                    <GridViewRowPresenter />
+                                    <ContentPresenter />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
             </Setter.Value>
         </Setter>
     </Style>
