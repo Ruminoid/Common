@@ -243,4 +243,18 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ToolBarButtonStyle" TargetType="Button"
+           BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="40"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.6"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
