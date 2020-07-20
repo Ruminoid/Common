@@ -215,6 +215,16 @@
             <Setter.Value>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Focusable" Value="false" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="NoBorderListViewStyle" TargetType="ListView">
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Focusable" Value="false" />
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListViewItem">
