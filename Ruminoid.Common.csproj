@@ -52,6 +52,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Helpers\LayoutHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
