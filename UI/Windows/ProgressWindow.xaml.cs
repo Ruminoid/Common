@@ -45,7 +45,7 @@ namespace Ruminoid.Common.UI.Windows
         {
             ProgressWindow window = new ProgressWindow();
             window.Progress.Completed += (sender, args) => window.Close();
-            window.ShowDialog();
+            window.Show();
             return window;
         }
 
@@ -53,7 +53,7 @@ namespace Ruminoid.Common.UI.Windows
         {
             ProgressWindow window = new ProgressWindow(progressable);
             window.Progress.Completed += (sender, args) => window.Close();
-            window.ShowDialog();
+            window.Show();
             return window;
         }
 
@@ -61,7 +61,7 @@ namespace Ruminoid.Common.UI.Windows
         {
             ProgressWindow window = new ProgressWindow(progress);
             window.Progress.Completed += (sender, args) => window.Close();
-            window.ShowDialog();
+            window.Show();
             return window;
         }
 
