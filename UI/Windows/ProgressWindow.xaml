@@ -18,17 +18,23 @@
              Title="{Binding Progress.Title, ElementName=RootElement}"
              ResizeMode="NoResize">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <ProgressBar Grid.Row="0" Margin="24"
-                     Minimum="0" Maximum="1" Value="{Binding Progress.Percentage, ElementName=RootElement}"/>
-        <StackPanel Grid.Row="1" Margin="24,0,24,24">
-            <TextBlock Margin="0,0,0,12" Text="{Binding Progress.Description, ElementName=RootElement}" TextWrapping="Wrap"/>
-            <TextBlock Margin="0,0,0,12" Text="{Binding Progress.Detail, ElementName=RootElement}" TextWrapping="Wrap"/>
-        </StackPanel>
-    </Grid>
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Themes/Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Themes/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Ruminoid.Common;component/Styles/Generic.xaml"/>
+                <ResourceDictionary Source="../../Styles/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+
+    <StackPanel Margin="24,0,24,24">
+        <ProgressBar Margin="24" Height="18"
+                         Minimum="0" Maximum="1" Value="{Binding Progress.Percentage, ElementName=RootElement}"/>
+        <TextBlock Margin="0,0,0,12" Text="{Binding Progress.Description, ElementName=RootElement}" TextWrapping="Wrap"/>
+        <TextBlock Margin="0,0,0,12" Text="{Binding Progress.Detail, ElementName=RootElement}" TextWrapping="Wrap"/>
+    </StackPanel>
 
 </controls:MetroWindow>
