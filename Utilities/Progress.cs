@@ -62,6 +62,14 @@ namespace Ruminoid.Common.Utilities
 
         #endregion
 
+        #region Events
+
+        public event EventHandler Completed;
+
+        public void TriggerComplete(object sender, EventArgs e) => Completed?.Invoke(sender, e);
+
+        #endregion
+
         #region Property Changed
 
         public event PropertyChangedEventHandler PropertyChanged;
