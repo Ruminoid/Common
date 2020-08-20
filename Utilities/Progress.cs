@@ -73,4 +73,9 @@ namespace Ruminoid.Common.Utilities
 
         #endregion
     }
+
+    public interface IProgressable
+    {
+        Progress Progress { get; }
+    }
 }

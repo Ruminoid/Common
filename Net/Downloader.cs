@@ -18,7 +18,7 @@ using SafeObjectPool;
 
 namespace Ruminoid.Common.Net
 {
-    public class Downloader
+    public class Downloader : IProgressable
     {
         #region Constructor
 
@@ -62,7 +62,7 @@ namespace Ruminoid.Common.Net
 
         #region Progress
 
-        public readonly Progress Progress;
+        public Progress Progress { get; }
 
         #endregion
 
