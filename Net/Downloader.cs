@@ -194,10 +194,9 @@ namespace Ruminoid.Common.Net
         /// </summary>
         /// <param name="url">The URL of the resource to download.</param>
         /// <param name="parts">Number of parts to download file as</param>
-        /// <param name="onComplete">Completion OnComplete function</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public async Task DownloadByteArray(string url, double parts, Action<byte[]> onComplete)
+        public async Task<byte[]> DownloadByteArray(string url, double parts)
         {
             _responseLength = (await WebRequest.Create(url).GetResponseAsync()).ContentLength;
             long partSize = (long) Math.Floor(_responseLength / parts);
@@ -344,13 +343,19 @@ namespace Ruminoid.Common.Net
                     if (asyncTasks.Count != 0) return;
                     ms.Flush();
                     ms.Close();
-                    onComplete?.Invoke(ms.ToArray());
+                    //onComplete?.Invoke(ms.ToArray());
                 });
+                
+                return ms.ToArray();
             }
             catch (Exception ex)
             {
                 Progress.Detail = "发生错误：" + ex.Message;
             }
+
+            Progress.TriggerComplete(this, EventArgs.Empty);
+
+            return null;
         }
 
         /// <summary>
@@ -476,6 +481,8 @@ namespace Ruminoid.Common.Net
                     }
                 }
             }
+
+            Progress.TriggerComplete(this, EventArgs.Empty);
         }
 
         #endregion
