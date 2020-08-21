@@ -44,7 +44,7 @@ namespace Ruminoid.Common.UI.Windows
         public static ProgressWindow CreateAndShowDialog()
         {
             ProgressWindow window = new ProgressWindow();
-            window.Progress.Completed += (sender, args) => window.Close();
+            //window.Progress.Completed += (sender, args) => window.Dispatcher.Invoke(() => window.Hide());
             window.Show();
             return window;
         }
@@ -52,7 +52,7 @@ namespace Ruminoid.Common.UI.Windows
         public static ProgressWindow CreateAndShowDialog(IProgressable progressable)
         {
             ProgressWindow window = new ProgressWindow(progressable);
-            window.Progress.Completed += (sender, args) => window.Close();
+            //window.Progress.Completed += (sender, args) => window.Dispatcher.Invoke(() => window.Hide());
             window.Show();
             return window;
         }
@@ -60,7 +60,7 @@ namespace Ruminoid.Common.UI.Windows
         public static ProgressWindow CreateAndShowDialog(Progress progress)
         {
             ProgressWindow window = new ProgressWindow(progress);
-            window.Progress.Completed += (sender, args) => window.Close();
+            //window.Progress.Completed += (sender, args) => window.Dispatcher.Invoke(() => window.Hide());
             window.Show();
             return window;
         }
