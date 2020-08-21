@@ -345,7 +345,9 @@ namespace Ruminoid.Common.Net
                     ms.Close();
                     //onComplete?.Invoke(ms.ToArray());
                 });
-                
+
+                Progress.TriggerComplete(this, EventArgs.Empty);
+
                 return ms.ToArray();
             }
             catch (Exception ex)
